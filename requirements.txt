@@ -3,3 +3,4 @@ anndata
 scanpy
 matplotlib
 harmonypy
+gunicorn
