@@ -1,1 +1,1 @@
-web: gunicorn flaskInteracter:app
+gunicorn flaskInteracter:app
