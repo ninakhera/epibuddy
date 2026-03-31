@@ -9,10 +9,6 @@ def home():
 @app.route("/submit", methods=["POST"])
 def submit():
     import requests
-    
-    choice = request.form["choice"]
-    datafile = request.files["adata"]
-    genes = request.form["genes"]
     import anndata as ad
     import scanpy as sc
     import io
@@ -20,6 +16,9 @@ def submit():
     import matplotlib.pyplot as plt
     import base64
     from io import BytesIO
+    choice = request.form["choice"]
+    datafile = request.files["adata"]
+    genes = request.form["genes"]
     url = request.form["adata"]
     response = requests.get(url)
     adata = ad.read_h5ad(BytesIO(response.content))
@@ -84,19 +83,3 @@ def submit():
         return render_template("result.html", img_data=img)
 if __name__ == "__main__":
     app.run(debug=True)
-
-        #upload epigeneitc data
-        #apply visualization algos to it!!
-        #What graphing type do you want 
-        #UMAP visualization
-        #t-SNE visualization
-        #Heatmap for marker gene (insert name)
-        #HGene-gene correlaiton plots
-                # adata
-              #what level of processing
-              #   $Have python insertion
-              #   Have user input group column name, cell type column
-              # Do some basic plotting
-              #   Recommend plots! Next steps (BIGGEST THINGS)
-              #   Cell-level UMAP of adata
-          # </py-script>
