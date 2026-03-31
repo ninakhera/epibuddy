@@ -8,6 +8,8 @@ def home():
 
 @app.route("/submit", methods=["POST"])
 def submit():
+    import requests
+    
     choice = request.form["choice"]
     datafile = request.files["adata"]
     genes = request.form["genes"]
@@ -18,7 +20,9 @@ def submit():
     import matplotlib.pyplot as plt
     import base64
     from io import BytesIO
-    adata = ad.read_h5ad(datafile)
+    url = request.form["adata"]
+    response = requests.get(url)
+    adata = ad.read_h5ad(BytesIO(response.content))
     #make plot based on choice identity
     plot = 8
     adata.obs_names_make_unique()
